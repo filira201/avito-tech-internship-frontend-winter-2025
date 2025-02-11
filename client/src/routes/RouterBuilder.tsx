@@ -1,6 +1,8 @@
+import ErrorPage from "../components/ErrorPage";
 import Layout from "../components/Layout";
 import Advertisement from "./Advertisement";
 import Advertisements from "./Advertisements";
+import FormAdvertisement from "./FormAdvertisement";
 import HomePage from "./HomePage";
 
 const RouterBuilder = () => {
@@ -14,6 +16,10 @@ const RouterBuilder = () => {
       element: <Advertisements />,
     },
     {
+      path: "/form",
+      element: <FormAdvertisement />,
+    },
+    {
       path: "/item/:itemId",
       element: <Advertisement />,
     },
@@ -23,7 +29,7 @@ const RouterBuilder = () => {
     {
       element: <Layout />,
       children: generalRoutes,
-      errorElement: <div>Not Found</div>,
+      errorElement: <ErrorPage />
     },
   ];
 
