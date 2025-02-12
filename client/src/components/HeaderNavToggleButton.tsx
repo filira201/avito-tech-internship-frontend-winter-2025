@@ -11,7 +11,10 @@ const HeaderNavToggleButton: FC<HeaderNavToggleButtonProps> = ({
   toggleMenu,
 }) => {
   return (
-    <button className="active:bg-[#d6e1f5] hover:cursor-pointer lg:hidden" onClick={toggleMenu}>
+    <button
+      className="active:bg-[#d6e1f5] transition-colors hover:cursor-pointer lg:hidden"
+      onClick={toggleMenu}
+    >
       {isMenuOpen ? (
         <XMarkIcon className="size-7" />
       ) : (

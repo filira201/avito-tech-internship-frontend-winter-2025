@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { Advertisement } from "../models/types";
+import { TypeAdvertisement } from "../models/types";
 
 export const advertisementApi = createApi({
   reducerPath: "advertisementApi",
@@ -8,13 +8,13 @@ export const advertisementApi = createApi({
   }),
   tagTypes: ["Advertisements"],
   endpoints: (builder) => ({
-    getAllAdvertisements: builder.query<Advertisement[], void>({
+    getAllAdvertisements: builder.query<TypeAdvertisement[], void>({
       query: () => ({
         url: "/items",
       }),
       providesTags: ["Advertisements"],
     }),
-    getAdvertisementById: builder.query<Advertisement, number>({
+    getAdvertisementById: builder.query<TypeAdvertisement, number>({
       query: (id) => ({
         url: `/items/${id}`,
       }),

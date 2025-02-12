@@ -33,4 +33,4 @@ type Services = GeneralAdvertisement & {
   workSchedule?: string;
 };
 
-export type Advertisement = RealEstate | Auto | Services;
+export type TypeAdvertisement = RealEstate | Auto | Services;

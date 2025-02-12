@@ -22,7 +22,7 @@ const HeaderNav: FC<HeaderNavProps> = ({ isMenuOpen }) => {
       <NavLink
         to="/list"
         className={({ isActive }) =>
-          `flex items-center gap-1 rounded-md py-1 px-3 hover:cursor-pointer hover:text-[#ff4053] active:text-[#ff4053] ${
+          `flex items-center gap-1 rounded-md py-1 px-3 hover:cursor-pointer transition-colors hover:text-[#ff4053] active:text-[#ff4053] ${
             isActive && "bg-[#00000008] text-[#1d1b16]"
           }`
         }
@@ -34,7 +34,7 @@ const HeaderNav: FC<HeaderNavProps> = ({ isMenuOpen }) => {
       <NavLink
         to="/form"
         className={({ isActive }) =>
-          `flex items-center gap-1 rounded-md py-1 px-3 hover:cursor-pointer hover:text-[#ff4053] active:text-[#ff4053] ${
+          `flex items-center gap-1 rounded-md py-1 px-3 hover:cursor-pointer transition-colors hover:text-[#ff4053] active:text-[#ff4053] ${
             isActive && "bg-[#00000008] text-[#1d1b16]"
           }`
         }

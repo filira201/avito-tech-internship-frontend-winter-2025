@@ -1,6 +1,6 @@
-import ErrorPage from "../components/ErrorPage";
+import ErrorPage from "./ErrorPage";
 import Layout from "../components/Layout";
-import Advertisement from "./Advertisement";
+import AdvertisementById from "./AdvertisementById";
 import Advertisements from "./Advertisements";
 import FormAdvertisement from "./FormAdvertisement";
 import HomePage from "./HomePage";
@@ -21,7 +21,7 @@ const RouterBuilder = () => {
     },
     {
       path: "/item/:itemId",
-      element: <Advertisement />,
+      element: <AdvertisementById />,
     },
   ];
 
@@ -29,7 +29,7 @@ const RouterBuilder = () => {
     {
       element: <Layout />,
       children: generalRoutes,
-      errorElement: <ErrorPage />
+      errorElement: <ErrorPage />,
     },
   ];
 
