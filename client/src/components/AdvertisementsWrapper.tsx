@@ -3,7 +3,7 @@ import { advertisementApi } from "../services/AdvertisementService";
 import Advertisement from "./Advertisement";
 import { Category } from "../models/types";
 import Pagination from "./Pagination";
-import { ITEMS_PER_PAGE } from "../constants/categories";
+import { ITEMS_PER_PAGE } from "../constants/constants";
 import {
   calculateFilterAdvertisements,
   calculatePaginateAdvertisements,
@@ -53,7 +53,7 @@ const AdvertisementsWrapper = () => {
       {paginatedAdvertisements.length ? (
         <Pagination totalPages={totalPages} currentPage={page} />
       ) : (
-        <h1>объявлений не найдено</h1>
+        <p className="text-7xl">объявлений не найдено</p>
       )}
     </>
   );

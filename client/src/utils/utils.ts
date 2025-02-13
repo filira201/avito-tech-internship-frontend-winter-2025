@@ -1,4 +1,4 @@
-import { ITEMS_PER_PAGE } from "../constants/categories";
+import { ITEMS_PER_PAGE } from "../constants/constants";
 import { Category, TypeAdvertisement } from "../models/types";
 
 export const calculateFilterAdvertisements = (
@@ -52,4 +52,15 @@ export const generatePagination = (
   }
 
   return [1, currentPage - 1, currentPage, currentPage + 1, totalPages];
+};
+
+export const getYearsLabel = (years: number): string => {
+  if (years % 10 === 1 && years % 100 !== 11) return "год";
+  if ([2, 3, 4].includes(years % 10) && ![12, 13, 14].includes(years % 100))
+    return "года";
+  return "лет";
+};
+
+export const formattedNumber = (price: number) => {
+  return price.toLocaleString("ru-RU");
 };

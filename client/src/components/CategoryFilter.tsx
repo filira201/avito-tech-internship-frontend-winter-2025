@@ -1,5 +1,5 @@
 import { useSearchParams } from "react-router";
-import { categories } from "../constants/categories";
+import { categories } from "../constants/constants";
 import CategoryFilterRadioButton from "./CategoryFilterRadioButton";
 import { Category } from "../models/types";
 

@@ -1,4 +1,4 @@
-import { categories } from "../constants/categories";
+import { categories } from "../constants/constants";
 
 type GeneralAdvertisement = {
   id: number;
@@ -34,6 +34,8 @@ type Services = GeneralAdvertisement & {
   cost: number;
   workSchedule?: string;
 };
+
+export type AdvertisementImageSize = "medium" | "large";
 
 export type Category = (typeof categories)[number];
 
