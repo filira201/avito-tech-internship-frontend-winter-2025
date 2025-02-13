@@ -27,7 +27,7 @@ const Advertisement: FC<AdvertisementProps> = ({ advertisement }) => {
         <p className="text-[#0099f7] font-medium">{advertisement.type}</p>
         <button
           onClick={() => navigate(`/item/${advertisement.id}`)}
-          className="mt-4 w-full cursor-pointer py-2 bg-[#02d15c] text-white rounded-lg transition-colors hover:bg-[#00c257] active:bg-[#00c257]"
+          className="mt-4 w-full cursor-pointer py-2 bg-[#00aaff] text-white rounded-lg transition-colors hover:bg-[#0098f7] active:bg-[#0098f7]"
         >
           Открыть
         </button>

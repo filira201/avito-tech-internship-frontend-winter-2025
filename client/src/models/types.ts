@@ -1,3 +1,5 @@
+import { categories } from "../constants/categories";
+
 type GeneralAdvertisement = {
   id: number;
   name: string;
@@ -32,5 +34,7 @@ type Services = GeneralAdvertisement & {
   cost: number;
   workSchedule?: string;
 };
+
+export type Category = (typeof categories)[number];
 
 export type TypeAdvertisement = RealEstate | Auto | Services;
