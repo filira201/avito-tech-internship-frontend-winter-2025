@@ -3,12 +3,12 @@ import { advertisementApi } from "../services/AdvertisementService";
 import Advertisement from "./Advertisement";
 import { Category } from "../models/types";
 import Pagination from "./Pagination";
-import { ITEMS_PER_PAGE } from "../constants/constants";
+import { ITEMS_PER_PAGE } from "../lib/constants/constants";
 import {
   calculateFilterAdvertisements,
   calculatePaginateAdvertisements,
   calculateSearchAdvertisements,
-} from "../utils/utils";
+} from "../lib/utils/utils";
 
 const AdvertisementsWrapper = () => {
   const [searchParams] = useSearchParams();

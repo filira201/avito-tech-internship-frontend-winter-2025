@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { useSearchParams } from "react-router";
-import { generatePagination } from "../utils/utils";
+import { generatePagination } from "../lib/utils/utils";
 
 interface PaginationProps {
   totalPages: number;

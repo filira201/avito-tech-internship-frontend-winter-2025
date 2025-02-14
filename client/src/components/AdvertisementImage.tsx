@@ -1,4 +1,4 @@
-import { sizeClasses } from "../constants/constants";
+import { sizeClasses } from "../lib/constants/constants";
 import { AdvertisementImageSize } from "../models/types";
 import template from "/images/template.png";
 

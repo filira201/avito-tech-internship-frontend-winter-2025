@@ -3,7 +3,7 @@ import { advertisementApi } from "../services/AdvertisementService";
 import AdvertisementImage from "../components/AdvertisementImage";
 import { TypeAdvertisement } from "../models/types";
 import DetailItem from "../components/DetailtItem";
-import { formattedNumber, getYearsLabel } from "../utils/utils";
+import { formattedNumber, getYearsLabel } from "../lib/utils/utils";
 
 const AdvertisementById = () => {
   const { itemId } = useParams<{ itemId: string }>();

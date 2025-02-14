@@ -18,7 +18,17 @@ export const advertisementApi = createApi({
       query: (id) => ({
         url: `/items/${id}`,
       }),
-      providesTags: ["Advertisements"],
+      providesTags: ["Advertisements"], //TODO сделать динамику
     }),
+    createAdvertisement: builder.mutation<TypeAdvertisement, TypeAdvertisement>(
+      {
+        query: (advertisement) => ({
+          url: "/items",
+          method: "POST",
+          body: advertisement,
+        }),
+        invalidatesTags: ["Advertisements"],
+      }
+    ),
   }),
 });

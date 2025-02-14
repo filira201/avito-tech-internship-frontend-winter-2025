@@ -1,5 +1,5 @@
 import { ITEMS_PER_PAGE } from "../constants/constants";
-import { Category, TypeAdvertisement } from "../models/types";
+import { Category, TypeAdvertisement } from "../../models/types";
 
 export const calculateFilterAdvertisements = (
   advertisements: TypeAdvertisement[],

@@ -5,7 +5,7 @@ export const categories = [
   { id: "services", label: "Услуги" },
 ] as const;
 
-export const ITEMS_PER_PAGE: number = 5;
+export const ITEMS_PER_PAGE: number = 500;
 
 export const sizeClasses = {
   medium: "w-full h-56",

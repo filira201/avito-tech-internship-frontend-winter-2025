@@ -1,4 +1,4 @@
-import { categories } from "../constants/constants";
+import { categories } from "../lib/constants/constants";
 
 type GeneralAdvertisement = {
   id: number;
