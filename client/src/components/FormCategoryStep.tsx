@@ -6,7 +6,6 @@ import ServicesForm from "./ServicesForm";
 
 const FormCategoryStep = () => {
   const { watch } = useFormContext<UltimateType>();
-
   const selectedType = watch("type");
 
   return (

@@ -1,7 +1,7 @@
 import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
 import { TypeAdvertisement, UltimateType } from "../models/types";
 import { advertisementApi } from "../services/AdvertisementService";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FORM_STEPS } from "../lib/constants/constants";
 import FormBaseStep from "../components/FormBaseStep";
 import FormCategoryStep from "../components/FormCategoryStep";
@@ -17,10 +17,28 @@ const FormAdvertisement = () => {
   const {
     handleSubmit,
     setError,
+    watch,
+    getValues,
     trigger,
     reset,
     formState: { errors, isSubmitting },
   } = methods;
+
+  const selectedType = watch("type");
+
+  useEffect(() => {
+    const baseFields = {
+      name: getValues("name"),
+      description: getValues("description"),
+      location: getValues("location"),
+      type: getValues("type"),
+      image: getValues("image"),
+    };
+
+    if (selectedType) {
+      reset(baseFields);
+    }
+  }, [selectedType, reset, getValues]);
 
   const onSubmit: SubmitHandler<UltimateType> = async (data) => {
     try {
