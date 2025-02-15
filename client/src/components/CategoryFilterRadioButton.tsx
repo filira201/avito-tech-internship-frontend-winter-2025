@@ -1,10 +1,10 @@
 import { FC } from "react";
-import { Category } from "../models/types";
+import { CategoryFilterType } from "../models/types";
 
 interface CategoryFilterRadioButtonProps {
-  category: Category;
-  currentCategory: Category["id"];
-  handleCategoryChange: (categoryId: Category["id"]) => void;
+  category: CategoryFilterType;
+  currentCategory: CategoryFilterType["id"];
+  handleCategoryChange: (categoryId: CategoryFilterType["id"]) => void;
 }
 
 const CategoryFilterRadioButton: FC<CategoryFilterRadioButtonProps> = ({

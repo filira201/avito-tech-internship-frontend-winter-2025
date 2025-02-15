@@ -1,7 +1,7 @@
 import { useSearchParams } from "react-router";
 import { advertisementApi } from "../services/AdvertisementService";
 import Advertisement from "./Advertisement";
-import { Category } from "../models/types";
+import { CategoryFilterType } from "../models/types";
 import Pagination from "./Pagination";
 import { ITEMS_PER_PAGE } from "../lib/constants/constants";
 import {
@@ -26,7 +26,8 @@ const AdvertisementsWrapper = () => {
   if (!advertisements?.length) return <h2>No Data</h2>;
 
   const searchQuery = searchParams.get("query") || "";
-  const category = (searchParams.get("category") || "all") as Category["id"];
+  const category = (searchParams.get("category") ||
+    "all") as CategoryFilterType["id"];
   const page = Number(searchParams.get("page")) || 1;
 
   const filteredAdvertisements = calculateFilterAdvertisements(
