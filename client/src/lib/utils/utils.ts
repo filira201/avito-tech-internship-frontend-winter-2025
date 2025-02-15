@@ -1,9 +1,9 @@
 import { ITEMS_PER_PAGE } from "../constants/constants";
-import { Category, TypeAdvertisement } from "../../models/types";
+import { CategoryFilterType, TypeAdvertisement } from "../../models/types";
 
 export const calculateFilterAdvertisements = (
   advertisements: TypeAdvertisement[],
-  category: Category["id"]
+  category: CategoryFilterType["id"]
 ) => {
   if (category === "all") return advertisements;
 
@@ -38,7 +38,7 @@ export const calculatePaginateAdvertisements = (
 export const generatePagination = (
   currentPage: number,
   totalPages: number
-): (number | string)[] => {
+): number[] => {
   if (totalPages <= 7) {
     return Array.from({ length: totalPages }, (_, i) => i + 1);
   }

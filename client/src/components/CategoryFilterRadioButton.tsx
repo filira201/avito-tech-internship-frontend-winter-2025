@@ -14,7 +14,7 @@ const CategoryFilterRadioButton: FC<CategoryFilterRadioButtonProps> = ({
 }) => {
   return (
     <label
-      className={`cursor-pointer font-medium flex items-center justify-center rounded-lg  pt-[10px] px-5 pb-3 transition-colors sm:min-w-44
+      className={`cursor-pointer font-medium flex items-center justify-center rounded-lg pt-[10px] px-5 pb-3 transition-colors sm:min-w-44
         ${
           currentCategory === category.id
             ? "bg-[#02d15c] text-white"

@@ -1,6 +1,8 @@
 import { FC } from "react";
 import { useSearchParams } from "react-router";
 import { generatePagination } from "../lib/utils/utils";
+import PaginationArrow from "./PaginationArrow";
+import PaginationNumbers from "./PaginationNumbers";
 
 interface PaginationProps {
   totalPages: number;
@@ -19,34 +21,24 @@ const Pagination: FC<PaginationProps> = ({ totalPages, currentPage }) => {
   const allPages = generatePagination(currentPage, totalPages);
 
   return (
-    <div className="flex justify-center gap-2">
-      <button
+    <div className="flex items-center justify-center gap-1 p-2">
+      <PaginationArrow
+        direction="left"
         onClick={() => handlePageChange(currentPage - 1)}
         disabled={currentPage === 1}
-        className="px-3 py-1 border rounded-md disabled:opacity-50"
-      >
-        Назад
-      </button>
+      />
 
-      {allPages.map((page, index) => (
-        <button
-          key={index}
-          onClick={() => handlePageChange(page as number)}
-          className={`px-3 py-1 border rounded-md ${
-            currentPage === page ? "bg-blue-500 text-white" : ""
-          }`}
-        >
-          {page}
-        </button>
-      ))}
+      <PaginationNumbers
+        allPages={allPages}
+        currentPage={currentPage}
+        handlePageChange={handlePageChange}
+      />
 
-      <button
+      <PaginationArrow
+        direction="right"
         onClick={() => handlePageChange(currentPage + 1)}
         disabled={currentPage >= totalPages}
-        className="px-3 py-1 border rounded-md disabled:opacity-50"
-      >
-        Вперед
-      </button>
+      />
     </div>
   );
 };
