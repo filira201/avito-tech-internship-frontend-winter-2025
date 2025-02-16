@@ -21,8 +21,12 @@ const Advertisement: FC<AdvertisementProps> = ({ advertisement }) => {
         <h2 className="text-lg font-semibold text-[#1a1a1a] mb-2 truncate w-full">
           {advertisement.name}
         </h2>
-        <p className="text-[#787774] text-sm truncate w-full">{advertisement.location}</p>
-        <p className="text-[#0099f7] font-medium truncate w-full">{advertisement.type}</p>
+        <p className="text-[#787774] text-sm truncate w-full">
+          {advertisement.location}
+        </p>
+        <p className="text-[#0099f7] font-medium truncate w-full">
+          {advertisement.type}
+        </p>
         <button
           onClick={() => navigate(`/item/${advertisement.id}`)}
           className="mt-4 w-full cursor-pointer py-2 bg-[#0582ff] text-white rounded-lg transition-colors hover:bg-[#045ac3] active:bg-[#045ac3]"

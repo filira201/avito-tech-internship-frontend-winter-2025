@@ -1,6 +1,5 @@
 import { PlusIcon } from "@heroicons/react/24/outline";
 import { ClipboardIcon } from "@heroicons/react/24/outline";
-import clsx from "clsx";
 import { FC } from "react";
 import { NavLink } from "react-router";
 
@@ -11,13 +10,9 @@ interface HeaderNavProps {
 const HeaderNav: FC<HeaderNavProps> = ({ isMenuOpen }) => {
   return (
     <nav
-      className={clsx(
-        "bg-white absolute left-0 right-0 top-full shadow-md p-4 flex-col items-center gap-4 lg:flex lg:flex-row lg:static lg:bg-transparent lg:p-0 lg:w-auto lg:shadow-none",
-        {
-          flex: isMenuOpen,
-          hidden: !isMenuOpen,
-        }
-      )}
+      className={`bg-white absolute left-0 right-0 top-full shadow-md p-4 flex-col items-center gap-4 lg:flex lg:flex-row lg:static lg:bg-transparent lg:p-0 lg:w-auto lg:shadow-none ${
+        isMenuOpen ? "flex" : "hidden"
+      }`}
     >
       <NavLink
         to="/list"

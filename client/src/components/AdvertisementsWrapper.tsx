@@ -9,6 +9,8 @@ import {
   calculatePaginateAdvertisements,
   calculateSearchAdvertisements,
 } from "../lib/utils/utils";
+import ErrorPage from "./Error.page";
+import Loader from "./Loader";
 
 const AdvertisementsWrapper = () => {
   const [searchParams] = useSearchParams();
@@ -20,10 +22,14 @@ const AdvertisementsWrapper = () => {
     error,
   } = advertisementApi.useGetAllAdvertisementsQuery();
 
-  if (isLoading) return <h2>Loading...</h2>;
-  if (isFetching) return <h2>Fetching...</h2>;
-  if (error) return <h2>Error </h2>;
-  if (!advertisements?.length) return <h2>No Data</h2>;
+  if (isLoading || isFetching) return <Loader />;
+  if (error) return <ErrorPage error={error} />;
+  if (!advertisements?.length)
+    return (
+      <h2 className="text-center text-2xl font-semibold text-[#1a1a1a]">
+        Данных не найдено
+      </h2>
+    );
 
   const searchQuery = searchParams.get("query") || "";
   const category = (searchParams.get("category") ||
@@ -54,7 +60,9 @@ const AdvertisementsWrapper = () => {
       {paginatedAdvertisements.length ? (
         <Pagination totalPages={totalPages} currentPage={page} />
       ) : (
-        <p className="text-7xl">объявлений не найдено</p>
+        <h2 className="text-center text-2xl font-semibold text-[#1a1a1a]">
+          Объявлений не найдено
+        </h2>
       )}
     </>
   );

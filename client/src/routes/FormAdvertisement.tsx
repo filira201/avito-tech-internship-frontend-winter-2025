@@ -8,6 +8,8 @@ import FormCategoryStep from "../components/FormCategoryStep";
 import FormNavigation from "../components/FormNavigation";
 import { useSearchParams } from "react-router";
 import CompleteStep from "../components/CompleteStep";
+import ErrorPage from "../components/Error.page";
+import Loader from "../components/Loader";
 
 const FormAdvertisement = () => {
   const [currentStep, setCurrentStep] = useState<number>(1);
@@ -61,10 +63,14 @@ const FormAdvertisement = () => {
     }
   }, [selectedType, reset, getValues, advertisement]);
 
-  if (advertisementId && isLoading) return <h2>Loading...</h2>;
-  if (advertisementId && isFetching) return <h2>Fetching...</h2>;
-  if (advertisementId && error) return <h2>Error</h2>;
-  if (advertisementId && !advertisement) return <h2>No Data</h2>;
+  if ((advertisementId && isLoading) || isFetching) return <Loader />;
+  if (advertisementId && error) return <ErrorPage error={error} />;
+  if (advertisementId && !advertisement)
+    return (
+      <h2 className="text-center text-2xl font-semibold text-[#1a1a1a]">
+        Данных не найдено
+      </h2>
+    );
 
   const isEditing = advertisementId !== undefined;
 

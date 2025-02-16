@@ -1,4 +1,4 @@
-import ErrorPage from "./ErrorPage";
+import NotFoundPage from "./NotFoundPage";
 import Layout from "../components/Layout";
 import AdvertisementById from "./AdvertisementById";
 import Advertisements from "./Advertisements";
@@ -29,7 +29,7 @@ const RouterBuilder = () => {
     {
       element: <Layout />,
       children: generalRoutes,
-      errorElement: <ErrorPage />,
+      errorElement: <NotFoundPage />,
     },
   ];
 

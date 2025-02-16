@@ -4,6 +4,8 @@ import AdvertisementImage from "../components/AdvertisementImage";
 import { TypeAdvertisement } from "../models/types";
 import DetailItem from "../components/DetailtItem";
 import { formattedNumber, getYearsLabel } from "../lib/utils/utils";
+import Loader from "../components/Loader";
+import ErrorPage from "../components/Error.page";
 
 const AdvertisementById = () => {
   const { itemId } = useParams<{ itemId: string }>();
@@ -16,10 +18,14 @@ const AdvertisementById = () => {
     error,
   } = advertisementApi.useGetAdvertisementByIdQuery(Number(itemId));
 
-  if (isLoading) return <h2>Loading...</h2>;
-  if (isFetching) return <h2>Fetching...</h2>;
-  if (error) return <h2>Error</h2>;
-  if (!advertisement) return <h2>No Data</h2>;
+  if (isLoading || isFetching) return <Loader />;
+  if (error) return <ErrorPage error={error} />;
+  if (!advertisement)
+    return (
+      <h2 className="text-center text-2xl font-semibold text-[#1a1a1a]">
+        Данных не найдено
+      </h2>
+    );
 
   const details = renderDetails(advertisement);
 
