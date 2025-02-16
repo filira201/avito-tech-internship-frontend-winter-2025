@@ -46,8 +46,9 @@ const AdvertisementById = () => {
             >
               Назад
             </button>
+
             <button
-              onClick={() => navigate("/form")}
+              onClick={() => navigate(`/form?id=${advertisement.id}`)}
               className="w-full cursor-pointer bg-[#0582ff] text-white font-medium text-lg flex items-center justify-center rounded-lg pt-[10px] px-5 pb-3 transition-colors hover:bg-[#045ac3] active:bg-[#045ac3]"
             >
               Редактировать

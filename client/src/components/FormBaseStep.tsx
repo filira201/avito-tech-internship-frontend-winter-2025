@@ -2,8 +2,13 @@ import { useFormContext } from "react-hook-form";
 import { UltimateType } from "../models/types";
 import { categories } from "../lib/constants/constants";
 import AdvertisementImage from "./AdvertisementImage";
+import { FC } from "react";
 
-const FormBaseStep = () => {
+interface FormBaseStepProps {
+  isEditing: boolean;
+}
+
+const FormBaseStep: FC<FormBaseStepProps> = ({ isEditing }) => {
   const {
     register,
     watch,
@@ -101,13 +106,18 @@ const FormBaseStep = () => {
       </div>
       <div>
         <label htmlFor="type" className="mt-2 block text-lg font-medium">
-          <span className="text-red-500 mr-2">*</span>Выберите категорию
-          объявления
+          <span className="text-red-500 mr-2">*</span>
+          {isEditing
+            ? "Категорию объявления нельзя изменить"
+            : "Выберите категорию объявления"}
         </label>
         <select
           {...register("type", { required: "Выберите категорию объявления" })}
+          disabled={isEditing}
           id="type"
-          className="w-full rounded-md border border-gray-200 p-2 placeholder:text-[#787774]"
+          className={`w-full rounded-md border border-gray-200 p-2 placeholder:text-[#787774] ${
+            isEditing ? "pointer-events-none opacity-50" : ""
+          }`}
           defaultValue=""
         >
           <option value="" disabled>

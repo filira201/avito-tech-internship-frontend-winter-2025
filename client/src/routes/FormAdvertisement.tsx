@@ -6,12 +6,27 @@ import { FORM_STEPS } from "../lib/constants/constants";
 import FormBaseStep from "../components/FormBaseStep";
 import FormCategoryStep from "../components/FormCategoryStep";
 import FormNavigation from "../components/FormNavigation";
+import { useSearchParams } from "react-router";
+import CompleteStep from "../components/CompleteStep";
 
 const FormAdvertisement = () => {
   const [currentStep, setCurrentStep] = useState<number>(1);
+  const [searchParams] = useSearchParams();
+  const searchParamsId = searchParams.get("id");
+  const advertisementId = searchParamsId ? Number(searchParamsId) : undefined;
 
   const [createAdvertisement] =
     advertisementApi.useCreateAdvertisementMutation();
+  const [updateAdvertisement] =
+    advertisementApi.useUpdateAdvertisementMutation();
+  const {
+    data: advertisement,
+    isLoading,
+    isFetching,
+    error,
+  } = advertisementApi.useGetAdvertisementByIdQuery(advertisementId as number, {
+    skip: !advertisementId,
+  });
 
   const methods = useForm<UltimateType>();
   const {
@@ -27,28 +42,45 @@ const FormAdvertisement = () => {
   const selectedType = watch("type");
 
   useEffect(() => {
-    const baseFields = {
-      name: getValues("name"),
-      description: getValues("description"),
-      location: getValues("location"),
-      type: getValues("type"),
-      image: getValues("image"),
-    };
+    if (advertisement) {
+      reset(advertisement);
+    }
+  }, [advertisement, reset]);
 
-    if (selectedType) {
+  useEffect(() => {
+    if (selectedType && !advertisement) {
+      const baseFields = {
+        name: getValues("name"),
+        description: getValues("description"),
+        location: getValues("location"),
+        type: getValues("type"),
+        image: getValues("image"),
+      };
+
       reset(baseFields);
     }
-  }, [selectedType, reset, getValues]);
+  }, [selectedType, reset, getValues, advertisement]);
+
+  if (advertisementId && isLoading) return <h2>Loading...</h2>;
+  if (advertisementId && isFetching) return <h2>Fetching...</h2>;
+  if (advertisementId && error) return <h2>Error</h2>;
+  if (advertisementId && !advertisement) return <h2>No Data</h2>;
+
+  const isEditing = advertisementId !== undefined;
 
   const onSubmit: SubmitHandler<UltimateType> = async (data) => {
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      const response = await createAdvertisement(data as TypeAdvertisement);
+      let response;
+      if (advertisementId !== undefined) {
+        response = await updateAdvertisement({ ...data, id: advertisementId });
+      } else {
+        response = await createAdvertisement(data as TypeAdvertisement);
+      }
       if (response.error) {
         throw new Error("Произошла ошибка при отправке формы");
       } else {
-        setCurrentStep((cs) => cs + 1);
         reset();
+        setCurrentStep((cs) => cs + 1);
       }
     } catch (error) {
       setError("root", {
@@ -81,10 +113,15 @@ const FormAdvertisement = () => {
 
   return (
     <div className="w-full mx-auto mt-10">
-      <h1 className="text-3xl font-semibold mb-2 text-[#1a1a1a]">
-        Форма размещения объявления
-      </h1>
-      {currentStep < 3 && (
+      {currentStep < FORM_STEPS && (
+        <h1 className="text-3xl font-semibold mb-2 text-[#1a1a1a]">
+          {isEditing
+            ? "Форма редактирования объявления"
+            : "Форма размещения объявления"}
+        </h1>
+      )}
+
+      {currentStep < FORM_STEPS && (
         <p className="text-2xl font-semibold mb-6">
           Шаг <span className="text-[#ff4053]">{currentStep}</span> из{" "}
           {FORM_STEPS - 1}
@@ -93,9 +130,9 @@ const FormAdvertisement = () => {
 
       <FormProvider {...methods}>
         <form className="flex flex-col gap-8" onSubmit={handleSubmit(onSubmit)}>
-          {currentStep === 1 && <FormBaseStep />}
+          {currentStep === 1 && <FormBaseStep isEditing={isEditing} />}
           {currentStep === 2 && <FormCategoryStep />}
-          {currentStep === 3 && <div>Вы успешно сдали форму</div>}
+          {currentStep === 3 && <CompleteStep isEditing={isEditing} />}
           {currentStep < FORM_STEPS && (
             <FormNavigation
               handleNextStep={handleNextStep}
