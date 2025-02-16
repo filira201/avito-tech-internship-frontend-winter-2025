@@ -316,8 +316,6 @@ let items = [
     experience: 3,
     cost: 7000,
   },
-
-  // Добавь ещё 23 объявления для полного списка из 50
 ];
 
 const makeCounter = () => {
